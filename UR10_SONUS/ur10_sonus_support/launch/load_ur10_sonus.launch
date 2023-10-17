@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+
+
+
+  <!-- Load robot description to parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find ur10_sonus_support)/urdf/ur10_sonus.xacro'"/>
+
+  <arg name="kinematics_params" default="$(find ur_description)/config/ur10/default_kinematics.yaml"/>
+
+
+
+
+</launch>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+    <robot name="ur10_nde" xmlns:xacro="http://ros.org/wiki/xacro">
+        <xacro:property name="prefix" value="" />
+
+        <xacro:include filename="$(find ur_description)/urdf/ur10.xacro"/>
+
+        <link name="${prefix}sonus_eef">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="2"/>
+                <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <mesh filename="package://ur10_sonus_support/meshes/visual/sonus_assembly.dae" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <mesh filename="package://ur10_sonus_support/meshes/collision/sonus_assembly.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </collision>   
+        </link>
+        
+
+        <joint name="${prefix}tool0-${prefix}sonus_eef" type="fixed">
+            <parent link="${prefix}tool0" />
+            <child link="${prefix}sonus_eef" />
+            <!-- <origin xyz="0.00826 -0.11695 0.13575" rpy="${radians(0)} ${radians(0)} ${radians(0)}" /> -->
+            <origin xyz="0.0 -0.13575 0.11695" rpy="${radians(0)} ${radians(-90)} ${radians(-90)}" />
+            <!-- <origin xyz="0.0 -0.0 0.0" rpy="${radians(90)} ${radians(180)} ${radians(0)}" /> -->
+        </joint>
+
+
+
+
+
+
+
+    </robot>
