@@ -66,6 +66,7 @@ add_service_files(
   FILES
   RobotMoverService.srv
   JointGoal.srv
+  CylindricalWorkpiece.srv
 #   Service1.srv
 #   Service2.srv
 )
