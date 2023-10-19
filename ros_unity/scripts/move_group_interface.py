@@ -59,9 +59,10 @@ class MoveGroupInterface:
         print("Planning frame: %s" % planning_frame)
         eef_link = self.move_group.get_end_effector_link()
         print("End effector link: %s" % eef_link)
-
-
-
+        
+        
+        response = RobotMoverServiceResponse()
+        
         if (req.plan_execute.data == "Plan" or req.plan_execute.data == "Plan and Execute"):
             self.plan = None
             self.fraction = None
@@ -70,19 +71,19 @@ class MoveGroupInterface:
             display_trajectory.trajectory_start = self.robot.get_current_state()
             display_trajectory.trajectory.append(self.plan)
             if (self.plan != None):
-                self.response.status.data = "Successfully planned the path."
+                response.status.data = "Successfully planned the path."
             print("Planning")
         
         if (req.plan_execute.data == "Execute" or req.plan_execute.data == "Plan and Execute"):
             self.move_group.execute(self.plan, wait=True)
             self.move_group.clear_pose_targets()
             self.move_group.stop()
-            self.response.status.data = "Executed planned path."
+            response.status.data = "Executed planned path."
             print("Executing")
         
         print(self.fraction)
         
-        return self.response
+        return response
         
         
 
